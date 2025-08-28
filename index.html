@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Fotos Vehículo</title>
+<style>
+  body { font-family: Arial, sans-serif; background: #f4f4f4; padding: 20px; }
+  .container { max-width: 500px; margin: auto; background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+  h1 { text-align: center; color: #333; }
+  button { padding: 10px 20px; font-size: 16px; margin: 10px 5px; cursor: pointer; border: none; border-radius: 5px; background-color: #007BFF; color: white; }
+  button:hover { background-color: #0056b3; }
+  label { display: block; margin: 10px 0; }
+  input[type="file"] { width: 100%; }
+  .hidden { display: none; }
+</style>
+</head>
+<body>
+
+<div class="container" id="step1">
+  <h1>Qué vehículo tenés?</h1>
+  <button onclick="seleccionarVehiculo('auto')">Auto</button>
+  <button onclick="seleccionarVehiculo('moto')">Moto</button>
+</div>
+
+<div class="container hidden" id="step2">
+  <h1>Subí las fotos</h1>
+  <form id="fotosForm" action="https://formspree.io/f/xdklaoly" method="POST" enctype="multipart/form-data">
+    
+    <div id="autoCampos" class="hidden">
+      <label>Cédula frontal <input type="file" name="cedula" accept="image/*" capture="environment" required></label>
+      <label>Frente <input type="file" name="frente" accept="image/*" capture="environment" required></label>
+      <label>Lateral derecho <input type="file" name="lateralDer" accept="image/*" capture="environment" required></label>
+      <label>Lateral izquierdo <input type="file" name="lateralIzq" accept="image/*" capture="environment" required></label>
+      <label>Trasera <input type="file" name="trasera" accept="image/*" capture="environment" required></label>
+      <label>Parabrisa <input type="file" name="parabrisa" accept="image/*" capture="environment" required></label>
+      <label>Kilometraje <input type="file" name="kilometraje" accept="image/*" capture="environment" required></label>
+      <label>Neumático <input type="file" name="neumatico" accept="image/*" capture="environment" required></label>
+      <label>Neumático de auxilio <input type="file" name="auxilio" accept="image/*" capture="environment" required></label>
+      <label>Tubo GNC <input type="file" name="gncTubo" accept="image/*" capture="environment"></label>
+      <label>Oblea GNC <input type="file" name="gncOblea" accept="image/*" capture="environment"></label>
+    </div>
+
+    <div id="motoCampos" class="hidden">
+      <label>Frente <input type="file" name="motoFrente" accept="image/*" capture="environment" required></label>
+      <label>Lateral izquierdo <input type="file" name="motoLateralIzq" accept="image/*" capture="environment" required></label>
+      <label>Lateral derecho <input type="file" name="motoLateralDer" accept="image/*" capture="environment" required></label>
+      <label>Trasera <input type="file" name="motoTrasera" accept="image/*" capture="environment" required></label>
+      <label>Kilometraje <input type="file" name="motoKilometraje" accept="image/*" capture="environment" required></label>
+      <label>Neumático <input type="file" name="motoNeumatico" accept="image/*" capture="environment" required></label>
+    </div>
+
+    <br>
+    <input type="submit" value="Enviar fotos" style="padding:10px 20px; font-size:16px; cursor:pointer; border-radius:5px; background-color:#28a745; color:white; border:none;">
+  </form>
+</div>
+
+<script>
+function seleccionarVehiculo(tipo){
+  document.getElementById('step1').classList.add('hidden');
+  document.getElementById('step2').classList.remove('hidden');
+  if(tipo === 'auto'){
+    document.getElementById('autoCampos').classList.remove('hidden');
+  } else if(tipo === 'moto'){
+    document.getElementById('motoCampos').classList.remove('hidden');
+  }
+}
+</script>
+
+</body>
+</html>
